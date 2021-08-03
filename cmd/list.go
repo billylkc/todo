@@ -9,10 +9,10 @@ import (
 
 // listCmd represents the list command
 var listCmd = &cobra.Command{
-	Use:     "list [-a]",
-	Aliases: []string{"l"},
-	Short:   "[l] List all todos.",
-	Long:    `[l] List all todos.`,
+	Use:     "list",
+	Aliases: []string{"l", "ls"},
+	Short:   "[ls] List all todos.",
+	Long:    `[ls] List all todos.`,
 	Example: "  todo list",
 	RunE: func(cmd *cobra.Command, args []string) error {
 

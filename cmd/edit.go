@@ -14,8 +14,19 @@ var editCmd = &cobra.Command{
 	Aliases: []string{"e"},
 	Short:   "[e] Edit a todo.",
 	Long:    `[e] Edit a todo.`,
-	Example: "  todo edit 2 Eat Apple",
+	Example: `
+  todo edit 2 Eat Apple
+  todo edit -d 0804 2 Eat Apple
+`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+
+		// Handle input date
+		// var err error
+		// taskDate, err = todo.ParseInputDate(taskDate)
+		// if err != nil {
+		// 	return err
+		// }
+		taskDate = "2021-08-04"
 
 		var name string
 		if len(args) >= 2 {
@@ -32,7 +43,7 @@ var editCmd = &cobra.Command{
 		}
 
 		// Edit
-		err = todo.EditTask(todoFile, id, name)
+		err = todo.EditTask(todoFile, id, name, taskDate)
 		if err != nil {
 			fmt.Println(err.Error())
 		}
@@ -49,4 +60,5 @@ var editCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(editCmd)
+
 }

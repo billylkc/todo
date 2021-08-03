@@ -2,18 +2,16 @@ package todo
 
 import (
 	"fmt"
-	"time"
 )
 
 // EditTask edits the corresponsing task to a new one
-func EditTask(path string, id int, name string) error {
+func EditTask(path string, id int, name string, date string) error {
 
 	// Read old tasks and add new ones
 	tasks, err := ReadTasks(path)
 	if err != nil {
 		return err
 	}
-	today := time.Now().Format("2006-01-02")
 
 	// Update Task
 	var oldtask, newtask Task
@@ -23,7 +21,7 @@ func EditTask(path string, id int, name string) error {
 			if i == id {
 				oldtask = tasks[i]
 				newtask = Task{
-					Date: today,
+					Date: date,
 					Name: name,
 					Done: " ",
 				}

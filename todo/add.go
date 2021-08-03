@@ -3,20 +3,19 @@ package todo
 import (
 	"encoding/json"
 	"strings"
-	"time"
 )
 
 // AddTask adds the tasks to the file
-func AddTask(path string, name string) error {
+func AddTask(path string, name string, date string) error {
 
 	// Read old tasks and add new ones
 	tasks, err := ReadTasks(path)
 	if err != nil {
 		return err
 	}
-	today := time.Now().Format("2006-01-02")
+
 	task := Task{
-		Date: today,
+		Date: date,
 		Name: strings.ReplaceAll(name, ",", ";"),
 		Done: " ",
 	}
