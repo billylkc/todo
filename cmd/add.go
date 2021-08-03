@@ -26,6 +26,12 @@ var addCmd = &cobra.Command{
 			fmt.Printf("\nAdded task - %s \n\n", task)
 		}
 
+		// List task
+		err := todo.ListTasks(todoFile)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
 		return nil
 	},
 }

@@ -22,10 +22,18 @@ var doneCmd = &cobra.Command{
 			return nil
 		}
 
+		// Change to done
 		err = todo.ChangeTaskStatus(todoFile, id, "x")
 		if err != nil {
 			fmt.Println(err.Error())
 		}
+
+		// List task
+		err = todo.ListTasks(todoFile)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
 		return nil
 	},
 }

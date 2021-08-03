@@ -1,9 +1,11 @@
 package todo
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-// EditTask edit the corresponsing task to a new one
-// Same complete status as the original task
+// EditTask edits the corresponsing task to a new one
 func EditTask(path string, id int, name string) error {
 
 	// Read old tasks and add new ones
@@ -11,6 +13,7 @@ func EditTask(path string, id int, name string) error {
 	if err != nil {
 		return err
 	}
+	today := time.Now().Format("2006-01-02")
 
 	// Update Task
 	var oldtask, newtask Task
@@ -20,9 +23,9 @@ func EditTask(path string, id int, name string) error {
 			if i == id {
 				oldtask = tasks[i]
 				newtask = Task{
-					Date: oldtask.Date,
+					Date: today,
 					Name: name,
-					Done: oldtask.Done,
+					Done: " ",
 				}
 				tasks[i] = newtask
 			}
@@ -37,6 +40,17 @@ func EditTask(path string, id int, name string) error {
 	if err != nil {
 		return err
 	}
+
+	// Print
+	msg := `
+Edited:
+  %s
+
+To be:
+  %s
+
+`
+	fmt.Printf(msg, oldtask.Name, newtask.Name)
 
 	return nil
 }

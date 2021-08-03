@@ -26,6 +26,13 @@ var undoneCmd = &cobra.Command{
 		if err != nil {
 			fmt.Println(err.Error())
 		}
+
+		// List task
+		err = todo.ListTasks(todoFile)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
 		return nil
 	},
 }
