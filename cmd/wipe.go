@@ -9,9 +9,10 @@ import (
 
 // wipeCmd represents the wipe command
 var wipeCmd = &cobra.Command{
-	Use:   "wipe",
-	Short: "Wipe all todos",
-	Long:  `Wipe all todos`,
+	Use:     "wipe",
+	Short:   "Wipe all todos",
+	Long:    `Wipe all todos`,
+	Example: "  todo wipe",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		err := todo.WipeAll(todoFile)

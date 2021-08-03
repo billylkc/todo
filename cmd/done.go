@@ -13,6 +13,7 @@ var doneCmd = &cobra.Command{
 	Aliases: []string{"d"},
 	Short:   "[d] Done a todo.",
 	Long:    `[d] Done a todo,`,
+	Example: "  todo done 2",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		// Check id

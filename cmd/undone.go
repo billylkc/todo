@@ -13,6 +13,7 @@ var undoneCmd = &cobra.Command{
 	Aliases: []string{"u"},
 	Short:   "[u] Unone a todo.",
 	Long:    `[u] Undone a todo.`,
+	Example: "  todo undone 2",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		// Check id

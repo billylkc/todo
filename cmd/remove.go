@@ -13,6 +13,7 @@ var removeCmd = &cobra.Command{
 	Aliases: []string{"r"},
 	Short:   "[r] Remove a todo.",
 	Long:    `[r] Remove a todo.`,
+	Example: "  todo remove 2",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		// Check id

@@ -14,7 +14,7 @@ var editCmd = &cobra.Command{
 	Aliases: []string{"e"},
 	Short:   "[e] Edit a todo.",
 	Long:    `[e] Edit a todo.`,
-	Example: "  todo edit 1 Eat Apple",
+	Example: "  todo edit 2 Eat Apple",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		var name string

@@ -11,8 +11,9 @@ import (
 var listCmd = &cobra.Command{
 	Use:     "list [-a]",
 	Aliases: []string{"l"},
-	Short:   "[l] List undone todos. If -a given, list all todo.",
-	Long:    `[l] List undone todos. If -a given, list all todo.`,
+	Short:   "[l] List all todos.",
+	Long:    `[l] List all todos.`,
+	Example: "  todo list",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		err := todo.ListTasks(todoFile)

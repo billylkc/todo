@@ -14,7 +14,7 @@ var addCmd = &cobra.Command{
 	Aliases: []string{"a"},
 	Short:   "[a] Add a todo.",
 	Long:    `[a] Add a todo.`,
-
+	Example: "  todo add Eat Apple",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		if len(args) >= 1 {
@@ -24,6 +24,8 @@ var addCmd = &cobra.Command{
 				fmt.Println(err.Error())
 			}
 			fmt.Printf("\nAdded task - %s \n\n", task)
+		} else {
+			return fmt.Errorf("\n\nPlease add at least one task.\n")
 		}
 
 		// List task
