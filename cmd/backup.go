@@ -6,6 +6,7 @@ import (
 )
 
 // backupCmd represents the backup command
+// TODO: Support range input
 var backupCmd = &cobra.Command{
 	Use:     "backup",
 	Aliases: []string{"bk"},

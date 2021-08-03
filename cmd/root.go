@@ -15,6 +15,7 @@ import (
 var (
 	cfgFile  string
 	todoFile string
+	taskDate string
 )
 
 // rootCmd represents the base command when called without any subcommands

@@ -8,6 +8,7 @@ import (
 )
 
 // removeCmd represents the done command
+// TODO: support multiple
 var removeCmd = &cobra.Command{
 	Use:     "remove <id>",
 	Aliases: []string{"r"},

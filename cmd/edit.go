@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/billylkc/todo/todo"
 	"github.com/spf13/cobra"
@@ -21,12 +22,11 @@ var editCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		// Handle input date
-		// var err error
-		// taskDate, err = todo.ParseInputDate(taskDate)
-		// if err != nil {
-		// 	return err
-		// }
-		taskDate = "2021-08-04"
+		var err error
+		taskDate, err = todo.ParseInputDate(taskDate)
+		if err != nil {
+			return err
+		}
 
 		var name string
 		if len(args) >= 2 {
@@ -60,5 +60,6 @@ var editCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(editCmd)
-
+	today := time.Now().Format("2006-01-02")
+	editCmd.Flags().StringVarP(&taskDate, "date", "d", today, "Task Date")
 }

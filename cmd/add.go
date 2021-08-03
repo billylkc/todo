@@ -9,8 +9,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var taskDate string
-
 // addCmd represents the add command
 var addCmd = &cobra.Command{
 	Use:     "add <todo>",
@@ -54,5 +52,5 @@ var addCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(addCmd)
 	today := time.Now().Format("2006-01-02")
-	addCmd.Flags().StringVarP(&taskDate, "date", "d", today, "Task Date")
+	addCmd.Flags().StringVarP(&taskDate, "date", "d", today, "Task date")
 }
