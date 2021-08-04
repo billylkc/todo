@@ -9,6 +9,7 @@ import (
 )
 
 // ConvertID converts the input id to int
+// Handle multiple values with format 2-4, 2,3,4
 func ConvertID(args []string) (int, error) {
 	var (
 		id  int

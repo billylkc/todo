@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 )
 
 // Task is the task specified in the todo file
@@ -19,6 +20,11 @@ func WriteTasks(path string, tasks []Task) error {
 	if err != nil {
 		return nil
 	}
+
+	// Sort tasks first
+	sort.Slice(tasks, func(i, j int) bool {
+		return tasks[i].Date < tasks[j].Date
+	})
 
 	// Write content
 	datawriter := bufio.NewWriter(f)
