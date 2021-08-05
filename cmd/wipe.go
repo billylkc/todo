@@ -22,7 +22,7 @@ var wipeCmd = &cobra.Command{
 		fmt.Printf("\nRemoved All Tasks\n\n")
 
 		// List task
-		err = todo.ListTasks(todoFile)
+		err = todo.ListTasks(todoFile, false)
 		if err != nil {
 			fmt.Println(err.Error())
 		}

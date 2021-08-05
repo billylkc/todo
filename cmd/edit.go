@@ -49,7 +49,7 @@ var editCmd = &cobra.Command{
 		}
 
 		// List task
-		err = todo.ListTasks(todoFile)
+		err = todo.ListTasks(todoFile, false)
 		if err != nil {
 			fmt.Println(err.Error())
 		}

@@ -8,7 +8,7 @@ import (
 )
 
 // ListTasks lists all the tasks
-func ListTasks(path string) error {
+func ListTasks(path string, undoneOnly bool) error {
 
 	// Read from file
 	tasks, err := ReadTasks(path)
@@ -21,6 +21,11 @@ func ListTasks(path string) error {
 	fmt.Printf("--\t----\t\t----\t----\n")
 	for i, task := range tasks {
 		line := fmt.Sprintf("%d\t%s\t[%s]\t%s", i+1, task.Date, task.Done, task.Name)
+		if undoneOnly {
+			if task.Done == "x" {
+				continue // pass for done tasks
+			}
+		}
 		fmt.Println(line)
 	}
 	fmt.Println("")
