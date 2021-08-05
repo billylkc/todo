@@ -18,7 +18,10 @@ var listCmd = &cobra.Command{
 	Aliases: []string{"l", "ls"},
 	Short:   "[l] List all todos.",
 	Long:    `[l] List all todos.`,
-	Example: "  todo list",
+	Example: `
+  todo list
+  todo list -s
+`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		if simple >= 1 { // if flag is provided

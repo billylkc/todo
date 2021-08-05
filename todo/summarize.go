@@ -3,14 +3,23 @@ package todo
 import (
 	"fmt"
 	"sort"
+	"strings"
 )
 
 // SummarizeTask summarizes the man-day used for different tasks
-func SummarizeTask(path string) error {
+// Tag is used as a search terms to filter the result
+func SummarizeTask(path string, tag string) error {
+
+	tag = strings.ToLower(strings.TrimSpace(tag))
 
 	tasks, err := ReadTasks(path)
 	if err != nil {
 		return err
+	}
+
+	// Remove additional information for tasks name (ignore after hypen)
+	for i, _ := range tasks {
+		tasks[i].Name = trimStringFromChar(tasks[i].Name, "-")
 	}
 
 	// Derive mappings for each day / task
@@ -87,9 +96,30 @@ func SummarizeTask(path string) error {
 			taskWeight[keys[i]],
 			doneMap[keys[i]],
 			key)
+
+		if tag != "" {
+			if strings.Contains(strings.ToLower(line), tag) {
+				// print
+			} else {
+				continue //skip
+			}
+		}
 		fmt.Printf(line)
 	}
 	sort.Strings(dates)
 	fmt.Printf("\nTotal of %d days\n    %v\n\n", len(dates), dates)
 	return nil
+}
+
+// trimStringFromChar returns the first part of the string before the provided character
+// Used to ignore string after hypen, when those are additonal information, e.g. Meeting - Something
+func trimStringFromChar(s string, char string) string {
+	var out string
+	if idx := strings.Index(s, char); idx != -1 {
+		out = s[:idx]
+	} else {
+		out = s
+	}
+	out = strings.TrimSpace(out)
+	return out
 }
