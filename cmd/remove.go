@@ -8,7 +8,6 @@ import (
 )
 
 // removeCmd represents the done command
-// TODO: support multiple
 var removeCmd = &cobra.Command{
 	Use:     "remove <id>",
 	Aliases: []string{"r"},
@@ -18,13 +17,13 @@ var removeCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		// Check id
-		id, err := todo.ConvertID(args)
+		ids, err := todo.ConvertIDs(args)
 		if err != nil {
 			fmt.Println(err.Error())
 			return nil
 		}
 
-		err = todo.RemoveTask(todoFile, id)
+		err = todo.RemoveTask(todoFile, ids)
 		if err != nil {
 			fmt.Println(err.Error())
 		}
@@ -34,7 +33,6 @@ var removeCmd = &cobra.Command{
 		if err != nil {
 			fmt.Println(err.Error())
 		}
-
 		return nil
 	},
 }

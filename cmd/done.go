@@ -17,14 +17,14 @@ var doneCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		// Check id
-		id, err := todo.ConvertID(args)
+		ids, err := todo.ConvertIDs(args)
 		if err != nil {
 			fmt.Println(err.Error())
 			return nil
 		}
 
 		// Change to done
-		err = todo.ChangeTaskStatus(todoFile, id, "x")
+		err = todo.ChangeTaskStatus(todoFile, ids, "x")
 		if err != nil {
 			fmt.Println(err.Error())
 		}

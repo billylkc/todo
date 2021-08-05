@@ -2,30 +2,42 @@ package todo
 
 import "fmt"
 
-// RemoveTask removes a task by id
-func RemoveTask(path string, id int) error {
-	var removed Task
+// RemoveTask removes a task by ids
+func RemoveTask(path string, ids []int) error {
+	var old []Task
+	var new []Task
+
 	// Read from file
 	tasks, err := ReadTasks(path)
 	if err != nil {
 		return err
 	}
 
+	// Create remove map
+	removeMap := make(map[int]bool)
+	for _, id := range ids {
+		id = id - 1 // index 0
+		removeMap[id] = true
+	}
+
 	// Update status
-	id = id - 1
-	if id < len(tasks) {
-		removed = tasks[id]
-		tasks = append(tasks[:id], tasks[id+1:]...)
-	} else {
-		return fmt.Errorf("\nInvalid Task ID - %d \n", id+1)
+	for i, task := range tasks {
+		if _, ok := removeMap[i]; ok {
+			old = append(old, task)
+		} else {
+			new = append(new, task)
+		}
 	}
 
 	// Write to file
-	err = WriteTasks(path, tasks)
+	err = WriteTasks(path, new)
 	if err != nil {
 		return err
 	}
-	fmt.Printf("\nRemoved: \n    %s \n\n", removed.Name)
+	fmt.Printf("\nRemoved: \n")
+	for _, task := range old {
+		fmt.Printf("   %s\n", task.Name)
+	}
 
 	return nil
 }

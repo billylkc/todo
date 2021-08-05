@@ -78,17 +78,3 @@ func converts(args []string) ([]int, error) {
 	}
 	return ids, nil
 }
-
-// makeRange generates a list of integer of min, max input (inclusive)
-func makeRange(min, max int) []int {
-	// swap if min, max are not valid
-	if max < min {
-		max, min = min, max
-	}
-
-	a := make([]int, max-min+1)
-	for i := range a {
-		a[i] = min + i
-	}
-	return a
-}

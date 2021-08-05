@@ -17,13 +17,14 @@ var undoneCmd = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 
 		// Check id
-		id, err := todo.ConvertID(args)
+		ids, err := todo.ConvertIDs(args)
 		if err != nil {
 			fmt.Println(err.Error())
 			return nil
 		}
 
-		err = todo.ChangeTaskStatus(todoFile, id, " ")
+		// Change to undone
+		err = todo.ChangeTaskStatus(todoFile, ids, " ")
 		if err != nil {
 			fmt.Println(err.Error())
 		}
