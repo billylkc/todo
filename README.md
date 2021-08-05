@@ -16,17 +16,20 @@ todo <command>
 
 Commands:
 h, help                 Show this help
-l, list [-a]            List undone todos. If -a given, list all todos
+l, list [-s]            List undone todos. If -s given, list only the undone (simplified) tasks
 a, add <todo>           Add a todo
+bk, backup              Archive the tasks to other file. Usually ~/todo.txt.bk
 e, edit <id> <todo>     Edit a todo
 d, done <id>            Done a todo
 u, undone <id>          Undone a todo
+s, summarize <id>       Summarize the man-day of todo tasks using simple weightings.
 r, remove <id>          Remove a todo
 wipe                    Wipe all todos
 ```
 
 ## Examples
 
+#### Add
 ```
 $ todo a "Buy milk"
 
@@ -37,7 +40,7 @@ $ todo a "Buy eggs"
 Added:
   Buy eggs
 
-$ todo a "Refill Millie's tennis balls"
+$ todo a "Refill Millie's tennis balls" -d 0807
 Added:
   Refill Millie's tennis balls
 
@@ -47,7 +50,10 @@ id  date        todo
 1   2019-09-07  Buy milk
 2   2019-09-07  Buy eggs
 3   2019-09-07  Refill Millie's tennis balls
+```
 
+#### Edit Task
+```
 $ todo e 2 "Buy a lot of eggs"
 
 Edited:
