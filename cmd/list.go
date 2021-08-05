@@ -28,7 +28,7 @@ var listCmd = &cobra.Command{
 			undoneOnly = true
 		}
 
-		err := todo.ListTasks(todoFile, undoneOnly)
+		err := todo.ListTasks(todoFile, tag, undoneOnly)
 		if err != nil {
 			fmt.Println(err.Error())
 		}
@@ -40,4 +40,5 @@ var listCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(listCmd)
 	listCmd.PersistentFlags().CountVarP(&simple, "", "s", "Only todo tasks would be show")
+	listCmd.Flags().StringVarP(&tag, "tag", "t", "", "Search terms to filter result")
 }

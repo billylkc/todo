@@ -8,7 +8,9 @@ import (
 )
 
 // ListTasks lists all the tasks
-func ListTasks(path string, undoneOnly bool) error {
+func ListTasks(path string, tag string, undoneOnly bool) error {
+
+	tag = strings.ToLower(strings.TrimSpace(tag))
 
 	// Read from file
 	tasks, err := ReadTasks(path)
@@ -21,9 +23,20 @@ func ListTasks(path string, undoneOnly bool) error {
 	fmt.Printf("--\t----\t\t----\t----\n")
 	for i, task := range tasks {
 		line := fmt.Sprintf("%d\t%s\t[%s]\t%s", i+1, task.Date, task.Done, task.Name)
+
+		// Status filtering
 		if undoneOnly {
 			if task.Done == "x" {
 				continue // pass for done tasks
+			}
+		}
+
+		// Tag filtering
+		if tag != "" {
+			if strings.Contains(strings.ToLower(line), tag) {
+				// print
+			} else {
+				continue //skip
 			}
 		}
 		fmt.Println(line)

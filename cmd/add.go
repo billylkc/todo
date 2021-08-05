@@ -40,7 +40,7 @@ var addCmd = &cobra.Command{
 		}
 
 		// List task
-		err = todo.ListTasks(todoFile, false) // all
+		err = todo.ListTasks(todoFile, "", false) // all
 		if err != nil {
 			fmt.Println(err.Error())
 		}
