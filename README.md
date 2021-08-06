@@ -31,28 +31,34 @@ wipe [--done]           Wipe all todos. If done flag is provided, only the finis
 
 #### Add Task
 ```
-$ todo add Eat Apple
+$ todo a Eat Apple
 
+  ---
   Added task - Eat Apple
 
   id      date            done    todo
   --      ----            ----    ----
   1       2021-08-06      [ ]     Eat Apple
 
+  ---
 
-$ todo add Eat Banana -d 0807
 
+$ todo a Eat Banana -d 0807
+
+  ---
   Added task - Eat Banana
 
   id      date            done    todo
   --      ----            ----    ----
   1       2021-08-06      [ ]     Eat Apple
   2       2021-08-07      [ ]     Eat Banana
+
+  ----
 ```
 
 #### Edit Task
 ```
-$ todo edit 1 "Eat Many Apples"
+$ todo e 1 "Eat Many Apples"
 
   ----
   Edited:
@@ -73,43 +79,113 @@ $ todo edit 1 "Eat Many Apples"
 ```
 $ todo d 2
 
-Done:
-  Buy a lot of eggs
+  ---
+  Done:
+	Eat Banana
 
-$ todo l
+    id      date            done    todo
+    --      ----            ----    ----
+	1       2021-08-06      [ ]     Eat Many Apples
+	2       2021-08-07      [x]     Eat Banana
 
-id  date        done  todo
---  ----        ----  ----
-1   2019-09-07  [ ]   Buy milk
-2   2019-09-07  [x]   Buy a lot of eggs
-3   2019-09-07  [ ]   Refill Millie's tennis balls
+  ---
 
 $ todo u 2
 
-Undone:
-  Buy a lot of eggs
+  ---
+  Done:
+	Eat Banana
 
-id  date        done  todo
---  ----        ----  ----
-1   2019-09-07  [ ]   Buy milk
-2   2019-09-07  [ ]   Buy a lot of eggs
-3   2019-09-07  [ ]   Refill Millie's tennis balls
+    id      date            done    todo
+    --      ----            ----    ----
+	1       2021-08-06      [ ]     Eat Many Apples
+	2       2021-08-07      [ ]     Eat Banana
 
+  ---
+```
 
+#### Remove
+```
 $ todo r 2
 
-Removed:
-  Buy a lot of eggs
+  ---
+  Removed:
+	 Eat Banana
 
-id  date        todo
---  ----        ----
-1   2019-09-07  Buy milk
-2   2019-09-07  Refill Millie's tennis balls
+	 id      date            done    todo
+	 --      ----            ----    ----
+	 1       2021-08-06      [ ]     Eat Many Apples
 
-$ todo wipe
-Wiped todos
+  ---
+```
+
+#### Wipe
 
 ```
+$ todo wipe
+
+  ---
+  All todo tasks removed.
+
+  id      date            done    todo
+  --      ----            ----    ----
+
+  ---
+
+```
+
+#### List
+
+```
+$ todo a Task 1
+$ todo a Task 2
+$ todo a Task 3
+$ todo a Task 4 -d 0807
+$ todo d 4
+$ todo l
+
+  ---
+  id      date            done    todo
+  --      ----            ----    ----
+  1       2021-08-06      [ ]     Task 1
+  2       2021-08-06      [ ]     Task 2
+  3       2021-08-06      [ ]     Task 3
+  4       2021-08-07      [x]     Task 4
+
+  ---
+
+$ todo l -s
+
+  ---
+  id      date            done    todo
+  --      ----            ----    ----
+  1       2021-08-06      [ ]     Task 1
+  2       2021-08-06      [ ]     Task 2
+  3       2021-08-06      [ ]     Task 3
+
+  ---
+
+```
+
+#### Summarize
+```
+$ todo s
+
+  ---
+  id      time            done    todo
+  --      ----            ----    ----
+  1       1.0 days         [x]    Task 4
+  2       0.3 days         [ ]    Task 1
+  3       0.3 days         [ ]    Task 2
+  4       0.3 days         [ ]    Task 3
+
+  Total of 2 days
+	  [2021-08-06 2021-08-07]
+
+  ---
+
+```
+
 
 ## Reference
 Inspired by [todo-cli](https://github.com/zwbetz-gh/todo-cli).
