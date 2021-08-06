@@ -27,6 +27,9 @@ r, remove <id>          Remove a todo
 wipe [--done]           Wipe all todos. If done flag is provided, only the finished task would be wiped.
 ```
 
+## Demo
+(To be added)
+
 ## Examples
 
 #### Add Task
