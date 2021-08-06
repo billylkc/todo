@@ -228,6 +228,15 @@ Backup todo tasks
 - Backup to another file (default ~/todo.txt.bk) `todo backup`
 - Backup finished task only to another file (default ~/todo.txt.bk) `todo backup --done`
 
+```
+$ todo bk
+
+  ---
+  |Written 2 lines to backup file [/root/todo.txt.bk]
+  ---
+
+```
+
 
 ## Reference
 Inspired by [todo-cli](https://github.com/zwbetz-gh/todo-cli).
