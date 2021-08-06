@@ -72,14 +72,14 @@ $ todo e 1 "Eat Many Apples"
   Edited:
 	Eat Banana
 
-	To be:
-	  Eat Many Bananas
+  To be:
+    Eat Many Bananas
 
 
-	  id      date            done    todo
-	  --      ----            ----    ----
-	  1       2021-08-06      [ ]     Eat Many Apples
-	  2       2021-08-07      [ ]     Eat Banana
+	id      date            done    todo
+	--      ----            ----    ----
+	1       2021-08-06      [ ]     Eat Many Apples
+	2       2021-08-07      [ ]     Eat Banana
   ---
 ```
 
@@ -107,13 +107,13 @@ $ todo d 2
 $ todo u 2
 
   ---
-  Done:
+  Undone:
 	Eat Banana
 
-    id      date            done    todo
-    --      ----            ----    ----
-	1       2021-08-06      [ ]     Eat Many Apples
-	2       2021-08-07      [ ]     Eat Banana
+  id      date            done    todo
+  --      ----            ----    ----
+  1       2021-08-06      [ ]     Eat Many Apples
+  2       2021-08-07      [ ]     Eat Banana
 
   ---
 ```
@@ -129,9 +129,9 @@ $ todo r 2
   Removed:
 	 Eat Banana
 
-	 id      date            done    todo
-	 --      ----            ----    ----
-	 1       2021-08-06      [ ]     Eat Many Apples
+  id      date            done    todo
+  --      ----            ----    ----
+  1       2021-08-06      [ ]     Eat Many Apples
 
   ---
 ```
@@ -232,7 +232,9 @@ Backup todo tasks
 $ todo bk
 
   ---
+
   |Written 2 lines to backup file [/root/todo.txt.bk]
+
   ---
 
 ```
