@@ -1,7 +1,7 @@
 # TODO CLI
 
 Inspired by the todo-cli package by [zwbetz-gh](https://github.com/zwbetz-gh).
-This is a golang implementation of the original program. The implementation uses plain text file instead of sqlite to minimize the dependencies.
+This is a golang implementation of the original program. This implementation uses plain text file (default ~/todo.txt) instead of sqlite to minimize the dependencies.
 
 Get things done via command line
 
@@ -29,7 +29,7 @@ wipe [--done]           Wipe all todos. If done flag is provided, only the finis
 
 ## Examples
 
-#### Add
+#### Add Task
 ```
 $ todo add Eat Apple
 
@@ -52,21 +52,25 @@ $ todo add Eat Banana -d 0807
 
 #### Edit Task
 ```
-$ todo e 2 "Buy a lot of eggs"
+$ todo edit 1 "Eat Many Apples"
 
-Edited:
-  Buy eggs
-To be:
-  Buy a lot of eggs
+  ----
+  Edited:
+	Eat Banana
 
-$ todo l
+	To be:
+	  Eat Many Bananas
 
-id  date        todo
---  ----        ----
-1   2019-09-07  Buy milk
-2   2019-09-07  Buy a lot of eggs
-3   2019-09-07  Refill Millie's tennis balls
 
+	  id      date            done    todo
+	  --      ----            ----    ----
+	  1       2021-08-06      [ ]     Eat Many Apples
+	  2       2021-08-07      [ ]     Eat Banana
+  ---
+```
+
+#### Done / Undone
+```
 $ todo d 2
 
 Done:
