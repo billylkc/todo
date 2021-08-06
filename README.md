@@ -17,9 +17,9 @@ todo <command>
 Commands:
 h, help                 Show this help
 l, list [-s]            List undone todos. If -s given, list only the undone (simplified) tasks.
-a, add <todo>           Add a todo
+a, add <todo> [-d]      Add a todo. If -d mmdd is provided, the date would be the input date, instead of current date.
 bk, backup [--done]     Archive the tasks to other file. Usually ~/todo.txt.bk. If done flag is provided, only the finished task would be backup.
-e, edit <id> <todo>     Edit a todo
+e, edit <id> <todo>     Edit a todo. If -d mmdd is provided, the date would be the input date, instead of current date
 d, done <id>            Done a todo
 u, undone <id>          Undone a todo
 s, summarize <id>       Summarize the man-day of todo tasks using simple weightings.
@@ -30,6 +30,9 @@ wipe [--done]           Wipe all todos. If done flag is provided, only the finis
 ## Examples
 
 #### Add Task
+
+Add task adds to the todo list. Date can also be provided to add the task with a specific date. `todo a task -d 0822`
+
 ```
 $ todo a Eat Apple
 
