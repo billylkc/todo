@@ -34,7 +34,7 @@ wipe [--done]           Wipe all todos. If done flag is provided, only the finis
 
 #### Add Task
 
-- Adds task to the todo list. `todo add Task 1`
+- Add tasks to the todo list. `todo add Task 1`
 - Date can also be provided to add the task with a specific date. `todo a Task 1 -d 0822`
 
 ```
