@@ -31,7 +31,7 @@ wipe [--done]           Wipe all todos. If done flag is provided, only the finis
 
 #### Add Task
 
-- Add task adds to the todo list. `todo add Task 1`
+- Adds task to the todo list. `todo add Task 1`
 - Date can also be provided to add the task with a specific date. `todo a Task 1 -d 0822`
 
 ```
@@ -61,6 +61,10 @@ $ todo a Eat Banana -d 0807
 ```
 
 #### Edit Task
+
+- Edit task. `todo e Task 1a`
+- Edit task with date. `todo e Task 1 a -d 0808`
+
 ```
 $ todo e 1 "Eat Many Apples"
 
@@ -80,6 +84,12 @@ $ todo e 1 "Eat Many Apples"
 ```
 
 #### Done / Undone
+
+- Change task to be done. `todo d 1`
+- Change task to undone. `todo u 1`
+- Change multiple tasks to done with range. `todo d 1-2`
+- Change multiple tasks to done with comma separated id. `todo d 1,2,4`
+
 ```
 $ todo d 2
 
@@ -109,6 +119,9 @@ $ todo u 2
 ```
 
 #### Remove
+
+- Remove a task. `task r 1`
+
 ```
 $ todo r 2
 
@@ -125,6 +138,11 @@ $ todo r 2
 
 #### Wipe
 
+Usually use this command after backup.
+
+- Remove all task. `task wipe`
+- Remove all task with done status. `task wipe --done`
+
 ```
 $ todo wipe
 
@@ -139,6 +157,11 @@ $ todo wipe
 ```
 
 #### List
+
+- List all tasks. `task l`
+- List only undone tasks. `task l -s`
+- List tasks with search tag `task l -t ProjectA`
+- List only undo tasks with search tag `task l -s -t ProjectA`
 
 ```
 $ todo a Task 1
@@ -172,6 +195,14 @@ $ todo l -s
 ```
 
 #### Summarize
+
+Summarize give a **quick overview** of the time spent on each task.
+
+it uses a simple logic to derive the **man-day** between tasks within the same day (**Same weightings**, if 3 tasks, then weight is 0.33). **Text after hypen would be ignored**, as it is considered to be additional information. (e.g `Meeing - ABC` -> `Meeting`)
+
+- Summarize task. `todo s`
+- Summarize task with tag filters. `todo s -t ProjectA`
+
 ```
 $ todo s
 
@@ -189,6 +220,11 @@ $ todo s
   ---
 
 ```
+
+#### Backup
+
+(TBA)
+
 
 
 ## Reference
