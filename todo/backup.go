@@ -1,53 +1,57 @@
 package todo
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 )
 
 // BackupTasks reads from the original task file and append the content to the backup file
-func BackupTasks(path string) error {
-	var lines []string
+// If doneOnly flag is provided, only the finished tasks will be back up
+func BackupTasks(path string, doneOnly bool) error {
+	var allTask []Task       // task from the original file
+	var originalTasks []Task // original task that would be written back to the original files / undone tasks
+	var bkTasks []Task       // done tasks to be backuped / done tasks
 
-	// Read the files in todo
-	file, err := os.Open(path)
+	// Read tasks
+	allTask, err := ReadTasks(path)
 	if err != nil {
 		return err
 	}
-	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-	}
-	if err := scanner.Err(); err != nil {
-		return err
+	// Handle doneOnly flag and backup all
+	for _, task := range allTask {
+		if doneOnly {
+			if task.Done == "x" {
+				bkTasks = append(bkTasks, task)
+			} else {
+				originalTasks = append(originalTasks, task)
+			}
+		} else {
+			// Backup all
+			bkTasks = append(bkTasks, task)
+		}
 	}
 
-	if len(lines) == 0 {
+	if len(bkTasks) == 0 {
 		return fmt.Errorf("/nNo new todo items for archive. /n")
 	}
 
 	// Append to backup files
-	backupPath := path + ".bk" // ~/todo.txt.bk
-	bk, err := os.OpenFile(backupPath, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	backupPath := path + ".bk"                   // ~/todo.txt.bk
+	err = WriteTasks(backupPath, bkTasks, false) // append
 	if err != nil {
-		return err
+		return fmt.Errorf("Can not write to backup file - %s \n", backupPath)
 	}
 
-	datawriter := bufio.NewWriter(bk)
-	if len(lines) > 0 {
-		for _, line := range lines {
-			_, _ = datawriter.WriteString(line + "\n")
+	// Write back to oringal file if any (undone tasks)
+	if len(originalTasks) > 0 {
+		err = WriteTasks(path, originalTasks, true) // overwrite
+		if err != nil {
+			return fmt.Errorf("Can not write back to todo file - %s \n", backupPath)
 		}
+
+		fmt.Printf("\nWritten %d lines to todo file [%s]\n\n", len(originalTasks), path)
 	}
-	datawriter.Flush()
-	if err := bk.Close(); err != nil {
-		return err
-	}
-	fmt.Printf("\nWritten %d lines to backup file [%s]\n\n", len(lines), backupPath)
+	fmt.Printf("\nWritten %d lines to backup file [%s]\n\n", len(bkTasks), backupPath)
 
 	return nil
 }

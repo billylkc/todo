@@ -30,7 +30,7 @@ func RemoveTask(path string, ids []int) error {
 	}
 
 	// Write to file
-	err = WriteTasks(path, new)
+	err = WriteTasks(path, new, true)
 	if err != nil {
 		return err
 	}

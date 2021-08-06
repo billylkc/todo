@@ -34,7 +34,7 @@ func EditTask(path string, id int, name string, date string) error {
 	}
 
 	// Write to file
-	err = WriteTasks(path, tasks)
+	err = WriteTasks(path, tasks, true)
 	if err != nil {
 		return err
 	}

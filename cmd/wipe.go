@@ -15,11 +15,16 @@ var wipeCmd = &cobra.Command{
 	Example: "  todo wipe",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
-		err := todo.WipeAll(todoFile)
+		// Derive flag
+		if doneCount >= 1 {
+			doneOnly = true
+		}
+
+		// Wipe Tasks
+		err := todo.WipeTasks(todoFile, doneOnly)
 		if err != nil {
 			return err
 		}
-		fmt.Printf("\nRemoved All Tasks\n\n")
 
 		// List task
 		err = todo.ListTasks(todoFile, "", false)
@@ -33,4 +38,5 @@ var wipeCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(wipeCmd)
+	wipeCmd.PersistentFlags().CountVarP(&doneCount, "done", "", "Only done tasks would be wiped")
 }

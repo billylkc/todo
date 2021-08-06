@@ -14,9 +14,19 @@ type Task struct {
 	Done string // x as Done, empty as not done
 }
 
-// WriteTasks writes the struct to the file
-func WriteTasks(path string, tasks []Task) error {
-	f, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
+// WriteTasks writes or append the struct to the file
+func WriteTasks(path string, tasks []Task, overwrite bool) error {
+	var (
+		err error
+		f   *os.File
+	)
+	if overwrite {
+		// overwrite
+		f, err = os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
+	} else {
+		// append
+		f, err = os.OpenFile(path, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0755)
+	}
 	if err != nil {
 		return nil
 	}

@@ -22,7 +22,7 @@ func AddTask(path string, name string, date string) error {
 	tasks = append(tasks, task)
 
 	// Write to file
-	err = WriteTasks(path, tasks)
+	err = WriteTasks(path, tasks, true)
 	if err != nil {
 		return err
 	}

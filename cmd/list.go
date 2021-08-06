@@ -39,6 +39,6 @@ var listCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(listCmd)
-	listCmd.PersistentFlags().CountVarP(&simple, "", "s", "Only todo tasks would be show")
+	listCmd.PersistentFlags().CountVarP(&simple, "", "s", "Only todo tasks would be showed")
 	listCmd.Flags().StringVarP(&tag, "tag", "t", "", "Search terms to filter result")
 }

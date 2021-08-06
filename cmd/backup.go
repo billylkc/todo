@@ -5,8 +5,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	doneCount int
+	doneOnly  bool
+)
+
 // backupCmd represents the backup command
-// TODO: Support range input
 var backupCmd = &cobra.Command{
 	Use:     "backup",
 	Aliases: []string{"bk"},
@@ -14,8 +18,13 @@ var backupCmd = &cobra.Command{
 	Long:    `[bk] Archive todo tasks`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 
+		// Derive flag
+		if doneCount >= 1 {
+			doneOnly = true
+		}
+
 		// Backup file
-		err := todo.BackupTasks(todoFile)
+		err := todo.BackupTasks(todoFile, doneOnly)
 		if err != nil {
 			return err
 		}
@@ -25,4 +34,5 @@ var backupCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(backupCmd)
+	backupCmd.PersistentFlags().CountVarP(&doneCount, "done", "", "Only done tasks would be archived")
 }
