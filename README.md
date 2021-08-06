@@ -3,7 +3,7 @@
 Inspired by the todo-cli package by [zwbetz-gh](https://github.com/zwbetz-gh).
 This is a golang implementation of the original program. This implementation uses plain text file (default ~/todo.txt) instead of sqlite to minimize the dependencies.
 
-Get things done via command line
+Get things done via command line.
 
 ## Install
    (TBA)
@@ -16,7 +16,7 @@ todo <command>
 
 Commands:
 h, help                 Show this help
-l, list [-s]            List undone todos. If -s given, list only the undone (simplified) tasks.
+l, list [-s]            List undone todos. If -s given, list only the undone (simplified views) tasks.
 a, add <todo> [-d]      Add a todo. If -d mmdd is provided, the date would be the input date, instead of current date.
 bk, backup [--done]     Archive the tasks to other file. Usually ~/todo.txt.bk. If done flag is provided, only the finished task would be backup.
 e, edit <id> <todo>     Edit a todo. If -d mmdd is provided, the date would be the input date, instead of current date
@@ -63,7 +63,7 @@ $ todo a Eat Banana -d 0807
 #### Edit Task
 
 - Edit task. `todo e Task 1a`
-- Edit task with date. `todo e Task 1 a -d 0808`
+- Edit task with date. `todo e Task 1a -d 0808`
 
 ```
 $ todo e 1 "Eat Many Apples"
@@ -88,7 +88,7 @@ $ todo e 1 "Eat Many Apples"
 - Change task to be done. `todo d 1`
 - Change task to undone. `todo u 1`
 - Change multiple tasks to done with range. `todo d 1-2`
-- Change multiple tasks to done with comma separated id. `todo d 1,2,4`
+- Change multiple tasks to done with comma separated ids. `todo d 1,2,4`
 
 ```
 $ todo d 2
@@ -223,8 +223,10 @@ $ todo s
 
 #### Backup
 
-(TBA)
+Backup todo tasks
 
+- Backup to another file (default ~/todo.txt.bk) `todo backup`
+- Backup finished task only to another file (default ~/todo.txt.bk) `todo backup --done`
 
 
 ## Reference
