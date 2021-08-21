@@ -5,9 +5,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var tag string // search terms for summary
+var (
+	tag     string // search terms for summary
+	group   int    // Count for groupby flag
+	bygroup bool   // bool for groupby flag
+)
 
 // summarizeCmd represents the summerize command
+// TODO: Add my group option to show summary by projects
 var summarizeCmd = &cobra.Command{
 	Use:     "summarize",
 	Aliases: []string{"s"},
@@ -16,10 +21,11 @@ var summarizeCmd = &cobra.Command{
 	Example: `
   todo summarize
   todo summarize -t Meeting
+  todo summarize -g
 `,
 	RunE: func(cmd *cobra.Command, args []string) error {
 
-		err := todo.SummarizeTask(todoFile, tag)
+		err := todo.SummarizeTask(todoFile, tag, bygroup)
 		if err != nil {
 			return err
 		}
@@ -31,4 +37,5 @@ var summarizeCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(summarizeCmd)
 	summarizeCmd.Flags().StringVarP(&tag, "tag", "t", "", "Search terms to filter result")
+	summarizeCmd.PersistentFlags().CountVarP(&group, "", "g", "Group summarized task by tag")
 }

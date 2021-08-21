@@ -8,9 +8,11 @@ import (
 
 // SummarizeTask summarizes the man-day used for different tasks
 // Tag is used as a search terms to filter the result
-func SummarizeTask(path string, tag string) error {
+// TODO: bygroup is used to print the result by project group first. Now use [xxx] format.
+func SummarizeTask(path string, tag string, bygroup bool) error {
 
 	tag = strings.ToLower(strings.TrimSpace(tag))
+	_ = bygroup
 
 	tasks, err := ReadTasks(path)
 	if err != nil {
@@ -79,7 +81,7 @@ func SummarizeTask(path string, tag string) error {
 		taskWeight[k] = weight
 	}
 
-	// Sort task before display
+	// Sort task by man-day before display
 	keys := make([]string, 0, len(taskWeight))
 	for key := range taskWeight {
 		keys = append(keys, key)

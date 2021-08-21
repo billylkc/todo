@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	simple     int
-	undoneOnly bool
+	simple     int  // Count for simplified flag
+	undoneOnly bool // bool for simplified flag
 )
 
 // listCmd represents the list command
