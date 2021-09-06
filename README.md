@@ -28,7 +28,9 @@ wipe [--done]           Wipe all todos. If done flag is provided, only the finis
 ```
 
 ## Demo
-(To be added)
+![To do](todo.gif)
+
+
 
 ## Examples
 
